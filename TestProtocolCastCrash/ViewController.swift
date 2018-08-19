@@ -15,8 +15,11 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         self.view.addSubview(self.viewController.view)
         if let castProtocol = self.viewController as? SomeProtocol {
+            //  If uncomment the print, seg-fault will occur.
 //            print(String(describing: castProtocol))
 //            print(String(describing: castProtocol.someFunction))
+            
+            //  Crash at this line
             castProtocol.someFunction()
         }
     }
