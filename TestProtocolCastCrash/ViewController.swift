@@ -10,23 +10,15 @@ import UIKit
 
 class ViewController: UIViewController {
     let viewController: UIViewController = Something()
-    let safeViewController: UIViewController = SafeSomething()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-//        let castProtocol = self.viewController as SomeProtocol
-//        print("desc: \(self.viewController.description)")
-//        castProtocol.someFunction()
-        self.view.addSubview(self.safeViewController.view)
-        if let safeCastProtocol = self.safeViewController as? SomeProtocol2 {
-            safeCastProtocol.someFunction(safeSelf: self.safeViewController)
+        self.view.addSubview(self.viewController.view)
+        if let castProtocol = self.viewController as? SomeProtocol {
+//            print(String(describing: castProtocol))
+//            print(String(describing: castProtocol.someFunction))
+            castProtocol.someFunction()
         }
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 }
 
@@ -37,14 +29,5 @@ protocol SomeProtocol where Self: UIViewController {
 class Something: UIViewController, SomeProtocol {
     func someFunction() {
         print("desc = \(self.description)")
-    }
-}
-
-protocol SomeProtocol2 where Self: UIViewController {
-    func someFunction<SelfType: UIViewController>(safeSelf: SelfType)
-}
-class SafeSomething: UIViewController, SomeProtocol2 {
-    func someFunction<SelfType: UIViewController>(safeSelf: SelfType) {
-        print("desc = \(safeSelf.description)")
     }
 }
