@@ -8,6 +8,8 @@
 
 import UIKit
 
+//  Exmaple of protocol where clause crash
+//  Related link: https://stackoverflow.com/questions/50913244/swift-protocol-with-where-self-clause
 class ViewController: UIViewController {
     let viewController: UIViewController = Something()
     
